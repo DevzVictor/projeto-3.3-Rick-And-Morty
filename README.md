@@ -10,14 +10,14 @@ Consulte **Implantação** para saber como implantar o projeto.
 
 ### 📋 Pré-requisitos
 
-IDE Visual Studio Code
-Node.js
-Express
-Nodemon
-Cors
-dotenv
-moongose
-swagger-ui-express
+IDE Visual Studio Code,
+Node.js,
+Express,
+Nodemon,
+Cors,
+dotenv,
+moongose,
+swagger-ui-express,
 EJS
 
 ### 🔧 Instalação
