@@ -1,0 +1,29 @@
+{
+  "name": "projeto-3.3-rick-and-morty",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index",
+    "start": "node src/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevzVictor/projeto-3.3-Rick-And-Morty.git"
+  },
+  "author": "Victor Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevzVictor/projeto-3.3-Rick-And-Morty/issues"
+  },
+  "homepage": "https://github.com/DevzVictor/projeto-3.3-Rick-And-Morty#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
