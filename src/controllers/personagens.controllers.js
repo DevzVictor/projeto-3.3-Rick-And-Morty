@@ -2,24 +2,24 @@ const personagensService = require('../services/personagens.services');
 
 const findAllPersonagensController = async (req, res) => {
   const allCharacters = await personagensService.findAllPersonagensService();
-  if (allCharacters.lenght == 0) {
-    return res.status(404).send({ message: 'Não existe nenhum personagem cadastrado!' });
+  if (allCharacters.lenght === 0) {
+    return res.status(400).send({ message: "Não existe nenhum personagem cadastrado!" });
   }
   res.send(allCharacters);
 };
 
 const findByIdPersonagensController = async (req, res) => {
-  const idParam = req.idParam.id;
+  const idParam = req.params.id;
   const selectPersonagem = await personagensService.findByIdPersonagensService(idParam);
   if (!selectPersonagem) {
     return res.status(404).send({ message: 'Personagem não encontrado' });
   }
-  res.send(200).send(selectPersonagem);
+  res.status(200).send(selectPersonagem);
 };
 
 const createPersonagensController = async (req, res) => {
   const character = req.body;
-  const newCharacter = await personagensService.createPersonagensService();
+  const newCharacter = await personagensService.createPersonagensService(character);
   return res.status(200).send({ message: 'Personagem criado com sucesso', data: newCharacter });
 };
 

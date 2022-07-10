@@ -1,9 +1,6 @@
 const Personagem = require('../models/personagens');
 
-const findAllPersonagensService = async () => {
-  const allCharacter = await Personagem.find();
-  return allCharacter;
-};
+const findAllPersonagensService = () => Personagem.find();
 
 const findByIdPersonagensService = async (idparam) => {
   const oneCharacter = await Personagem.findById(idparam);
@@ -32,5 +29,5 @@ module.exports = {
     findByIdPersonagensService,
     createPersonagensService,
     updatePersonagensService,
-    deletePersonagensService
+    deletePersonagensService,
 };
