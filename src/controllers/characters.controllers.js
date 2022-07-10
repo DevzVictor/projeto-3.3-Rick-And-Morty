@@ -5,7 +5,6 @@ const findAllCharactersController = async (req, res) => {
   if(allCharacters.length == 0){
     return res.status(400).send({ message: "Não existe nenhum personagem cadastrado!" });
   }
-  console.log(allCharacters);
   res.send(allCharacters);
 };
 
