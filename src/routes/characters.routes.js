@@ -1,10 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const charactersController = require('../controllers/characters.controllers');
-const {
-  validId,
-  validObjectBody,
-} = require('../middlewares/characters.middleware');
+const {validId,validObjectBody} = require('../middlewares/characters.middleware');
 
 route.get('/all-characters', charactersController.findAllCharactersController);
 route.get(

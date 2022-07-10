@@ -1,0 +1,212 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Rick and Morty",
+    "description": "API de cadastro dos personagens da serie Rick and Morty",
+    "contact": {
+      "email": "victor-dev@outlook.com.br"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "API local"
+    },
+    {
+      "url": "https://rickandmorty.herokuapp.com",
+      "description": "API no Heroku"
+    }
+  ],
+  "paths": {
+    "/characters/create-characters": {
+      "post": {
+        "summary": "Criar um novo personagem",
+        "description": "Rota responsável por criar um novo personagem",
+        "tags": ["Characters"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Characters"
+              },
+              "examples": {
+                "Character": {
+                  "value": {
+                    "nome": "Rick",
+                    "imagem": "teste"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Characters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/all-characters": {
+      "get": {
+        "summary": "Buscar todos os personagens",
+        "description": "Rota responsável por buscar todos os personagens",
+        "tags": ["Characters"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Characters"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/find-characters/{id}": {
+      "get": {
+        "summary": "Busca uma personagem pelo ID",
+        "description": "Rota responsável por buscar uma personagem pelo ID",
+        "tags": ["Characters"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schemas": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Characters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/update-characters/{id}": {
+      "put": {
+        "summary": "Editar um personagem pelo ID",
+        "description": "Rota responsável por editar um persoangem pelo ID",
+        "tags": ["Characters"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para a busca e edita-lo",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Characters"
+              },
+              "examples": {
+                "Character": {
+                  "value": {
+                    "nome": "Rick Editado",
+                    "imagem": "teste editado"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Characters"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/delete-characters/{id}": {
+      "delete": {
+        "summary": "Apagar um personagem pelo ID",
+        "description": "Rota responsável por apagar um personagem pelo ID",
+        "tags": ["Characters"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do personagem para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Characters": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "imagem": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
