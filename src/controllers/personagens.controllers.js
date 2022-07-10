@@ -2,18 +2,16 @@ const personagensService = require('../services/personagens.services');
 
 const findAllPersonagensController = async (req, res) => {
   const allCharacters = await personagensService.findAllPersonagensService();
-  if (allCharacters.lenght === 0) {
+  if(allCharacters.length == 0){
     return res.status(400).send({ message: "Não existe nenhum personagem cadastrado!" });
   }
+  console.log(allCharacters);
   res.send(allCharacters);
 };
 
 const findByIdPersonagensController = async (req, res) => {
   const idParam = req.params.id;
   const selectPersonagem = await personagensService.findByIdPersonagensService(idParam);
-  if (!selectPersonagem) {
-    return res.status(404).send({ message: 'Personagem não encontrado' });
-  }
   res.status(200).send(selectPersonagem);
 };
 

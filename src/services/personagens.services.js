@@ -1,6 +1,9 @@
 const Personagem = require('../models/personagens');
 
-const findAllPersonagensService = () => Personagem.find();
+const findAllPersonagensService = async () => {
+  const allCharacters = await Personagem.find();
+  return allCharacters
+};
 
 const findByIdPersonagensService = async (idparam) => {
   const oneCharacter = await Personagem.findById(idparam);
