@@ -6,6 +6,7 @@ const app = express();
 const characterRoutes = require('./routes/characters.routes');
 const swaggerRoutes = require('./swagger/swagger.route');
 const userRoutes = require('./routes/users.routes');
+const authRoutes = require('./routes/auth.routes');
 const connectToDataBase = require('./database/database');
 
 connectToDataBase();
@@ -15,6 +16,7 @@ app.use(cors());
 app.use('/characters', characterRoutes);
 app.use('/api-docs', swaggerRoutes);
 app.use('/users', userRoutes);
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
