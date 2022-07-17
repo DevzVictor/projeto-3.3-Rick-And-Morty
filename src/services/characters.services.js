@@ -2,7 +2,7 @@ const Personagem = require('../models/characters');
 
 const findAllCharactersService = async () => {
   const allCharacters = await Personagem.find();
-  return allCharacters
+  return allCharacters;
 };
 
 const findByIdCharactersService = async (idparam) => {
@@ -27,10 +27,14 @@ const deleteCharactersService = async (idparam) => {
   return await Personagem.findByIdAndDelete(idparam);
 };
 
+const searchCharacterService = (nome) =>
+  Personagem.find({ message: { $regex: `${nome || ''}`, $options: 'i' } })
+
 module.exports = {
-    findAllCharactersService,
-    findByIdCharactersService,
-    createCharactersService,
-    updateCharactersService,
-    deleteCharactersService,
+  findAllCharactersService,
+  findByIdCharactersService,
+  createCharactersService,
+  updateCharactersService,
+  deleteCharactersService,
+  searchCharacterService,
 };
