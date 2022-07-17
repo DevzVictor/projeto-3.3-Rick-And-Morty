@@ -19,13 +19,20 @@ const findByIdCharactersController = async (req, res) => {
 };
 
 const createCharactersController = async (req, res) => {
-  const character = req.body;
-  const newCharacter = await charactersService.createCharactersService(
-    character,
-  );
-  return res
-    .status(200)
-    .send({ message: 'Personagem criado com sucesso', data: newCharacter });
+  try {
+    const { nome, imagem } = req.body;
+    const { id } = await charactersService.createCharactersService(
+      nome,
+      imagem,
+      req.userId,
+    );
+    return res.status(200).send({
+      message: 'Personagem criado com sucesso',
+      Character: { id, nome, imagem },
+    });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
 };
 
 const updateCharactersController = async (req, res) => {

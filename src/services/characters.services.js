@@ -1,5 +1,10 @@
 const Personagem = require('../models/characters');
 
+const createCharactersService = async (nome, imagem, userId) => {
+  const createdCharacter = await Personagem.create({nome, imagem, user: userId});
+  return createdCharacter;
+};
+
 const findAllCharactersService = async () => {
   const allCharacters = await Personagem.find();
   return allCharacters;
@@ -8,11 +13,6 @@ const findAllCharactersService = async () => {
 const findByIdCharactersService = async (idparam) => {
   const oneCharacter = await Personagem.findById(idparam);
   return oneCharacter;
-};
-
-const createCharactersService = async (newCharacter) => {
-  const createdCharacter = await Personagem.create(newCharacter);
-  return createdCharacter;
 };
 
 const updateCharactersService = async (idparam, editCharacter) => {
@@ -28,7 +28,7 @@ const deleteCharactersService = async (idparam) => {
 };
 
 const searchCharacterService = (nome) =>
-  Personagem.find({ message: { $regex: `${nome || ''}`, $options: 'i' } })
+  Personagem.find({ message: { $regex: `${nome || ''}`, $options: 'i' } });
 
 module.exports = {
   findAllCharactersService,

@@ -19,11 +19,112 @@
     }
   ],
   "paths": {
+    "/users/create": {
+      "post": {
+        "summary": "Criar um novo usuário",
+        "description": "Rota responsável por criar um novo usuário",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "Users": {
+                  "value": {
+                    "name": "User test",
+                    "username": "Test Dev",
+                    "email": "test-dev@outlook.com.br",
+                    "password": "12345",
+                    "avatar": "https://avatars.githubusercontent.com/u/91481122?v=4"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schemma": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Buscar todos os usuários",
+        "description": "Rota responsável por buscar todos os usuários",
+        "tags": ["Users"],
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Entrar no Twitter",
+        "description": "Rota responsável fazer o login de um user cadastrado",
+        "tags": ["Auth"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "User": {
+                  "value": {
+                    "email": "test-dev@outlook.com.br",
+                    "password": "12345"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/characters/create-characters": {
       "post": {
         "summary": "Criar um novo personagem",
         "description": "Rota responsável por criar um novo personagem",
         "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -42,6 +143,9 @@
           }
         },
         "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
           "400": {
             "description": "Not Found"
           },
@@ -196,6 +300,26 @@
       }
     },
     "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          }
+        }
+      },
       "Characters": {
         "type": "object",
         "properties": {

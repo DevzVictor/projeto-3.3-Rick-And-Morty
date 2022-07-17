@@ -1,7 +1,7 @@
-const express = require('express');
-const route = express.Router();
+const route = require("express").Router();
 const charactersController = require('../controllers/characters.controllers');
 const {validId,validObjectBody,} = require('../middlewares/characters.middleware');
+const authMiddleware = require("../middlewares/auth.middleware");
 
 route.get('/all-characters', charactersController.findAllCharactersController);
 route.get(
@@ -10,8 +10,8 @@ route.get(
   charactersController.findByIdCharactersController,
 );
 route.post(
-  '/create-characters',
-  validObjectBody,
+  '/create-characters', 
+  authMiddleware, validObjectBody, 
   charactersController.createCharactersController,
 );
 route.put(

@@ -1,9 +1,9 @@
-require('domain').config();
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { findByIdUserService } = require('../services/users.services');
 
 module.exports = (req, res, next) => {
-  const authHeader = req.headers.autorization;
+  const authHeader = req.headers.authorization;
 
   if (!authHeader) {
     return res.status(401).send({ message: 'O token não foi informado!' });
