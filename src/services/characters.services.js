@@ -28,7 +28,7 @@ const deleteCharactersService = async (idparam) => {
 };
 
 const searchCharacterService = (nome) =>
-  Personagem.find({ message: { $regex: `${nome || ''}`, $options: 'i' } });
+  Personagem.find({ message: { $regex: `${nome || ""}`, $options: "i" } });
 
 module.exports = {
   findAllCharactersService,

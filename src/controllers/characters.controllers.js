@@ -52,7 +52,7 @@ const deleteCharactersController = async (req, res) => {
 };
 
 const searchCharacterController = async (req, res) => {
-  const { nome } = req.body;
+  const { nome } = req.query;
 
   const character = await charactersService.searchCharacterService(nome);
 

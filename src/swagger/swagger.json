@@ -168,7 +168,48 @@
         "summary": "Buscar todos os personagens",
         "description": "Rota responsável por buscar todos os personagens",
         "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
         "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "400": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Characters"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/characters/search": {
+      "get": {
+        "summary": "Buscar personagens por palavras chaves",
+        "description": "Rota responsável por buscar os personagens que correspondem a mensagem enviada via palavras chaves",
+        "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nome",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
           "400": {
             "description": "Not Found"
           },
@@ -193,6 +234,7 @@
         "summary": "Busca uma personagem pelo ID",
         "description": "Rota responsável por buscar uma personagem pelo ID",
         "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -224,6 +266,7 @@
         "summary": "Editar um personagem pelo ID",
         "description": "Rota responsável por editar um persoangem pelo ID",
         "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
@@ -272,6 +315,7 @@
         "summary": "Apagar um personagem pelo ID",
         "description": "Rota responsável por apagar um personagem pelo ID",
         "tags": ["Characters"],
+        "security": [{ "bearerAuth": [] }],
         "parameters": [
           {
             "name": "id",
