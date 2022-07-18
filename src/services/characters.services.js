@@ -27,8 +27,8 @@ const deleteCharactersService = async (idparam) => {
   return await Personagem.findByIdAndDelete(idparam);
 };
 
-const searchCharacterService = (nome) =>
-  Personagem.find({ message: { $regex: `${nome || ""}`, $options: "i" } });
+const searchCharacterService = async (nome) =>
+  await Personagem.find({ nome: { $regex: `${nome || ""}`, $options: "i" } });
 
 module.exports = {
   findAllCharactersService,
